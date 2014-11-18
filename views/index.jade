@@ -1,25 +1,30 @@
 extends layout
 block content
     h2= title
-    form.form-horizontal(action='/', enctype='multipart/form-data',
-        class='form-horizontal', role='form', method='post')
+
+    .alert-status
+
+    form.form-horizontal.valid(action='/', role='form', method='post')
         input(type='hidden', name='_csrf', value='#{csrf}')
 
         .form-group
             label.col-md-4.control-label(for='name') Имя
             .col-md-4
-                input#textinput.form-control.input-md(name='name', type='text', placeholder='Василий Пупкин')
+                input#name.form-control.input-md(name='name', type='text', placeholder='Василий Пупкин',
+                    required, data-parsley-minlength="2", data-parsley-errors-messages-disabled)
 
         .form-group
             label.col-md-4.control-label(for='email') Email
             .col-md-4
-                input#textinput.form-control.input-md(name='email', type='text', placeholder='vasya@pupkin.com')
+                input#email.form-control.input-md(name='email', type='text', placeholder='vasya@pupkin.com',
+                    required, data-parsley-type="email", data-parsley-errors-messages-disabled)
 
         .form-group
-            label.col-md-4.control-label(for='body') Сообщение
+            label.col-md-4.control-label(for='body', required, data-parsley-minlength="6",
+                data-parsley-errors-messages-disabled) Сообщение
             .col-md-4
-                textarea#textarea.form-control(name='body')
+                textarea#body.form-control(name='body')
 
         .form-group
             .col-sm-offset-4.col-sm-4
-                button(type='submit', class='btn btn-default') Submit
+                button#submit(type='submit', class='btn btn-default') Submit
