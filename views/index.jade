@@ -20,10 +20,10 @@ block content
                     required, data-parsley-type="email", data-parsley-errors-messages-disabled)
 
         .form-group
-            label.col-md-4.control-label(for='body', required, data-parsley-minlength="6",
-                data-parsley-errors-messages-disabled) Сообщение
+            label.col-md-4.control-label(for='body') Сообщение
             .col-md-4
-                textarea#body.form-control(name='body')
+                textarea#body.form-control(name='body', required, data-parsley-minlength="6",
+                    data-parsley-errors-messages-disabled)
 
         .form-group
             .col-sm-offset-4.col-sm-4
