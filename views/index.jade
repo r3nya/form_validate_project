@@ -1,14 +1,25 @@
 extends layout
 block content
     h2= title
-    form(action='/', enctype='multipart/form-data',
-    class='form-horizontal', role='form', method='post')
+    form.form-horizontal(action='/', enctype='multipart/form-data',
+        class='form-horizontal', role='form', method='post')
         input(type='hidden', name='_csrf', value='#{csrf}')
+
         .form-group
-            label(for='fieldPhoto', class='col-sm-2 control-label') Photo
-            .col-sm-4
-                input(type='file', class='form-control', required, accept='image/*',
-                id='fieldPhoto', name='Photo')
+            label.col-md-4.control-label(for='name') Имя
+            .col-md-4
+                input#textinput.form-control.input-md(name='name', type='text', placeholder='Василий Пупкин')
+
         .form-group
-            .col-sm-offset-2.col-sm-4
+            label.col-md-4.control-label(for='email') Email
+            .col-md-4
+                input#textinput.form-control.input-md(name='email', type='text', placeholder='vasya@pupkin.com')
+
+        .form-group
+            label.col-md-4.control-label(for='body') Сообщение
+            .col-md-4
+                textarea#textarea.form-control(name='body')
+
+        .form-group
+            .col-sm-offset-4.col-sm-4
                 button(type='submit', class='btn btn-default') Submit

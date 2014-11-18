@@ -2,6 +2,7 @@ var express     = require('express'),
     jade        = require('jade'),
     csrf        = require('csurf'),
     bodyParser  = require('body-parser'),
+    path        = require('path'),
     session     = require('express-session'),
     cookie      = require('cookie-parser'),
     nodemailer  = require('nodemailer');
@@ -15,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(csrf());
 
 app.set('view engine', 'jade');
+
+app.use(express.static(path.join(__dirname, 'bower_components')));
 
 app.use(function (err, req, res, next) {
     if (err.code !== 'EBADCSRFTOKEN') return next(err);
