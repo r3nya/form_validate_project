@@ -1,0 +1,29 @@
+{
+  "name": "form_validate_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/r3nya/form_validate_project"
+  },
+  "author": "Andrey M.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/r3nya/form_validate_project/issues"
+  },
+  "homepage": "https://github.com/r3nya/form_validate_project",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "cookie-parser": "^1.3.3",
+    "csurf": "^1.6.3",
+    "express": "^4.10.2",
+    "express-flash": "0.0.2",
+    "express-session": "^1.9.1",
+    "jade": "^1.7.0",
+    "nodemailer": "^1.3.0"
+  }
+}
