@@ -63,7 +63,7 @@ app.post('/', function (req, res) {
                 res.send('Почта сломалась…');
             } else {
                 console.log('Message sent: ', info.response);
-                res.send('Message delivery…');
+                res.send('Сообщение отправлено.');
             }
         });
     });
