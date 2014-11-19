@@ -48,8 +48,6 @@ app.get('/', function (req, res) {
 });
 
 app.post('/', function (req, res) {
-    console.log(req.body);
-
     getHtmlMail(req.body.name, req.body.email, req.body.body, function(htmlBody) {
         mailer.sendMail({
             from    : config.mailbot.from,
@@ -60,10 +58,10 @@ app.post('/', function (req, res) {
             if (err) {
                 console.log('Mail error: ', err);
                 res.status(500);
-                res.send('Почта сломалась…');
+                res.send({title: 'Упс…', msg: 'Почта сломалась…', status: 'error'});
             } else {
                 console.log('Message sent: ', info.response);
-                res.send('Сообщение отправлено.');
+                res.send({title: 'Фух!', msg: 'Сообщение отправлено.', status: 'success'});
             }
         });
     });
