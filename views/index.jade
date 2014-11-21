@@ -12,19 +12,19 @@ block content
                 label.col-md-4.control-label(for='name') Имя
                 .col-md-4
                     input#name.form-control.input-md(name='name', type='text', placeholder='Василий Пупкин',
-                        required, data-parsley-minlength="2", data-parsley-errors-messages-disabled)
+                        data-parsley-minlength="2", data-parsley-errors-messages-disabled, data-parsley-required)
 
             .form-group
                 label.col-md-4.control-label(for='email') Email
                 .col-md-4
                     input#email.form-control.input-md(name='email', type='text', placeholder='vasya@pupkin.com',
-                        required, data-parsley-type="email", data-parsley-errors-messages-disabled)
+                        data-parsley-type="email", data-parsley-errors-messages-disabled, data-parsley-required)
 
             .form-group
                 label.col-md-4.control-label(for='body') Сообщение
                 .col-md-4
-                    textarea#body.form-control(name='body', placeholder='Привет!', required, data-parsley-minlength="6",
-                        data-parsley-errors-messages-disabled)
+                    textarea#body.form-control(name='body', placeholder='Привет!', data-parsley-minlength="6",
+                        data-parsley-errors-messages-disabled, data-parsley-required)
 
             .form-group
                 .col-sm-offset-4.col-sm-4
