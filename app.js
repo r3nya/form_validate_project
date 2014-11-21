@@ -1,18 +1,16 @@
 var express     = require('express'),
     jade        = require('jade'),
-    csrf        = require('csurf'),
     bodyParser  = require('body-parser'),
     path        = require('path'),
     session     = require('express-session'),
-    cookie      = require('cookie-parser'),
-    nodemailer  = require('nodemailer');
-
-var getHtmlMail = require('./lib/getHtmlMail');
+    cookie      = require('cookie-parser');
 
 var config  = require(path.join(__dirname, 'config.json'));
 
 var app     = express();
 var port    = process.env.PORT || 3000;
+
+var routes = require('./routes/index');
 
 app.use(session({secret: 'blablabla'}));
 app.use(cookie());
@@ -32,40 +30,7 @@ app.use(function (err, req, res, next) {
     res.send('session has expired or form tampered with');
 });
 
-var mailer = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: config.gmail.username,
-        pass: config.gmail.password
-    }
-});
-
-app.get('/', function (req, res) {
-    res.render('index', {
-        title  : 'Feedback',
-        csrf   : req.csrfToken()
-    });
-});
-
-app.post('/', function (req, res) {
-    getHtmlMail(req.body.name, req.body.email, req.body.body, function(htmlBody) {
-        mailer.sendMail({
-            from    : config.mailbot.from,
-            to      : config.mailbot.to,
-            subject : config.mailbot.subj,
-            html    : htmlBody
-        }, function (err, info) {
-            if (err) {
-                console.log('Mail error: ', err);
-                res.status(500);
-                res.send({title: 'Упс…', msg: 'Почта сломалась…', status: 'error'});
-            } else {
-                console.log('Message sent: ', info.response);
-                res.send({title: 'Фух!', msg: 'Сообщение отправлено.', status: 'success'});
-            }
-        });
-    });
-});
+app.use('/', routes);
 
 // catch 404
 app.use(function (req, res, next) {
