@@ -2,6 +2,7 @@ var express     = require('express'),
     jade        = require('jade'),
     bodyParser  = require('body-parser'),
     path        = require('path'),
+    csrf        = require('csurf'),
     session     = require('express-session'),
     cookie      = require('cookie-parser');
 
@@ -12,7 +13,11 @@ var port    = process.env.PORT || 3000;
 
 var routes = require('./routes/index');
 
-app.use(session({secret: 'blablabla'}));
+app.use(session({
+    secret: 'blablabla',
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(cookie());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(csrf());
