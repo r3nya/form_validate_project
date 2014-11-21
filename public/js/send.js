@@ -18,8 +18,7 @@ $(function() {
             body : $('textarea[name="body"]').val(),
             _csrf: $('input[name="_csrf"]').val()
         }, function (result) {
-            swal(result.title, result.msg, result.status)
-
+            swal(result.title, result.msg, result.status);
         });
     });
 });
